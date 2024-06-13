@@ -43,9 +43,7 @@ GROUP BY age_group
 ORDER BY avg_interest_count DESC
 LIMIT 1;
 
-
-
- 
+# From the answers to the above queries, share insights such as the most common interests, dominant gender demographics, and age groups with the highest average number of interests.
  
 
 
