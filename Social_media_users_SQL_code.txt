@@ -1,0 +1,57 @@
+SELECT * FROM social_media_users.table ;
+
+ /* Cool Facts */
+ 
+ /* Most Popular Interests */
+SELECT interests, COUNT(*) AS interest_count
+FROM social_media_users.table
+GROUP BY interests
+ORDER BY interest_count DESC
+LIMIT 5;
+
+ /* Average Age of User */
+ SELECT AVG(age) AS average_age
+FROM social_media_users.table;
+
+ /* Formulate Questions*/
+ 
+  /* What are the top 3 most common genders among social media users?*/
+  SELECT gender, COUNT(*) AS gender_count
+FROM social_media_users.table
+GROUP BY gender
+ORDER BY gender_count DESC
+LIMIT 3;
+
+  /*  Which age group has the highest average number of interests?*/
+SELECT age_group, AVG(interest_count) AS avg_interest_count
+FROM (
+    -- Categorize users into age groups and count their interests
+    SELECT CASE
+               WHEN age < 18 THEN 'Under 18'
+               WHEN age >= 18 AND age <= 30 THEN '18-30'
+               WHEN age > 30 THEN 'Over 30'
+           END AS age_group,
+           COUNT(interests) AS interest_count
+    FROM social_media_users.table
+    GROUP BY CASE
+               WHEN age < 18 THEN 'Under 18'
+               WHEN age >= 18 AND age <= 30 THEN '18-30'
+               WHEN age > 30 THEN 'Over 30'
+           END
+) AS subquery
+GROUP BY age_group
+ORDER BY avg_interest_count DESC
+LIMIT 1;
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
